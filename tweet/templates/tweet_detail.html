@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-sm text-center" style="max-width: 500px; width: 100%;">
+        {% if tweet.photo %}
+        <img src="{{ tweet.photo.url }}" class="card-img-top mx-auto" style="height: 300px; object-fit: contain; max-width: 100%;">
+        {% endif %}
+        <div class="card-body">
+            <h3 class="card-title">{{ tweet.user.username }}</h3>
+            <p class="card-text">{{ tweet.text }}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-center">
+            <a href="{% url 'tweet_list' %}" class="btn btn-secondary">Back to Tweets</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

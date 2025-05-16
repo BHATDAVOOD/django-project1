@@ -5,19 +5,42 @@ Index
 {% endblock %}
 
 {% block content %}
-<h1 class="mt-4 text-center">Welcome to Tweet App</h1>
-<a class="btn btn-primary mb-4" href="{% url 'tweet_create' %}">Create Tweet</a>
-<div class="container row gap-3">
-    {% for tweet in tweets  %}
-    <div class="card" style="width: 18rem;">
-  <img src="{{tweet.photo.url}}" class="card-img-top" alt="..." height="200">
-  <div class="card-body">
-    <h5 class="card-title">{{tweet.user.username}}</h5>
-    <p class="card-text">{{tweet.text}}</p>
-    <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary">Edit</a>
-    <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
-  </div>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">🐦 Welcome to Tweet App</h1>
+
+    <div class="text-center mb-4">
+        <a class="btn btn-success" href="{% url 'tweet_create' %}">+ Create Tweet</a>
+    </div>
+
+    {% if tweets %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for tweet in tweets %}
+        <div class="col">
+            <div class="card h-100 shadow-sm border-primary">
+                {% if tweet.photo %}
+                <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet Photo" style="object-fit: cover; height: 200px;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ tweet.user.username }}</h5>
+                    <p class="card-text">{{ tweet.text }}</p>
+                </div>
+  <div class="card-footer d-flex flex-column">
+    <div class="d-flex justify-content-center">
+  <a href="{% url 'tweet_detail' tweet.id %}" class="btn btn-outline-success btn-sm w-50">View</a>
 </div>
-    {% endfor %}
+    {% if tweet.user == user %}
+    <div class="d-flex justify-content-between mt-2">
+        <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-outline-primary btn-sm w-50 me-2">Edit</a>
+        <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-outline-danger btn-sm w-50">Delete</a>
+    </div>
+    {% endif %}
+</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-center text-muted">No tweets to display. Be the first to post!</p>
+    {% endif %}
 </div>
 {% endblock %}
