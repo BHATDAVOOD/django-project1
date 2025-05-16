@@ -1,10 +1,10 @@
-# Django Project 1
+# Django Project : Tweet-App-Basic
 
 This repository contains the code for a simple Django application.
 
 ## Project Structure
 
-django-project1/
+django-tweet-app-basic/
 ├── .gitignore
 ├── manage.py
 └── templates/
@@ -23,8 +23,8 @@ django-project1/
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/BHATDAVOOD/django-project1.git
-   cd django-project1
+   git clone https://github.com/BHATDAVOOD/django-tweet-app-basic.git
+   cd django-tweet-app-basic
 
 ## Create and activate a virtual environment:
 python -m venv env
