@@ -2,7 +2,11 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-Index
+{% if form.instance.pk%}
+Edit
+{% else %}
+Create
+{% endif %}
 {% endblock %}
 
 {% block content %}
